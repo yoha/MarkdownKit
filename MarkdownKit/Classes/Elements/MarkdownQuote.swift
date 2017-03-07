@@ -23,15 +23,14 @@ open class MarkdownQuote: MarkdownLevelElement {
     return String(format: MarkdownQuote.regex, level)
   }
 
-  public init(font: UIFont? = nil, maxLevel: Int = 0, indicator: String = ">",
+  public init(font: UIFont? = nil, maxLevel: Int = 0, indicator: String = "| ",
               separator: String = "  ", color: UIColor? = nil) {
     self.maxLevel = maxLevel
     self.indicator = indicator
     self.separator = separator
-    self.font = font
+    self.font = font?.italic()
     self.color = color
   }
-
 
   open func formatText(_ attributedString: NSMutableAttributedString, range: NSRange, level: Int) {
     var string = (0..<level).reduce("") { (string: String, _: Int) -> String in
